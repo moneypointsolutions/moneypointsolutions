@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- contact.html -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — MoneyPoint Solutions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+
+      <a class="logo" href="index.html">
+        <div class="logo-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+        </div>
+        <span class="logo-name">Money<span>Point</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+
+      <a href="contact.html" class="nav-cta">Get Started</a>
+
+      <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="contact.html" class="mob-cta">Get Started →</a>
+  </div>
+
+  <div class="page" id="page-contact">
+
+    <div class="contact-layout" style="padding-top:var(--nav-h)">
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar">
+
+        <div>
+
+          <div class="logo">
+            <div class="logo-mark">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+
+            <span class="logo-name">
+              Money<span style="color:var(--green)">Point</span>
+            </span>
+          </div>
+
+          <div class="sidebar-head">
+            <h2>
+              Let's talk about your <em>payments.</em>
+            </h2>
+
+            <p>
+              Contact MoneyPoint Solutions to learn more about POS systems,
+              payment processing, and modern business payment solutions.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- CONTACT CHANNELS -->
+        <div class="contact-channels">
+
+          <div class="channel">
+            <div class="ch-icon">
+              ✉
+            </div>
+
+            <div>
+              <div class="ch-label">General Inquiries</div>
+
+              <div class="ch-value">
+                <a href="mailto:moneypointsupport@gmail.com">
+                  moneypointsupport@gmail.com
+                </a>
+              </div>
+
+              <div class="ch-sub">
+                We typically respond within 1 business day
+              </div>
+            </div>
+          </div>
+
+          <div class="channel">
+            <div class="ch-icon">
+              ☎
+            </div>
+
+            <div>
+              <div class="ch-label">Business Line</div>
+
+              <div class="ch-value">
+                <a href="tel:+171">
+                  (71)
+                </a>
+              </div>
+
+              <div class="ch-sub">
+                Monday – Friday
+              </div>
+            </div>
+          </div>
+
+          <div class="channel">
+            <div class="ch-icon">
+              ☎
+            </div>
+
+            <div>
+              <div class="ch-label">Mobile</div>
+
+              <div class="ch-value">
+                <a href="tel:+120">
+                  (20)
+                </a>
+              </div>
+
+              <div class="ch-sub">
+                Available during business hours
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+          © 2025 MoneyPoint Solutions · New York, NY
+        </div>
+
+      </div>
+
+      <!-- FORM PANEL -->
+      <div class="contact-form-panel">
+
+        <div class="form-header">
+
+          <div class="section-label">
+            <div class="acline"></div>
+            Contact Us
+          </div>
+
+          <h2>How can we help?</h2>
+
+          <p>
+            Reach out to discuss payment processing, POS systems,
+            pricing options, or business solutions.
+          </p>
+
+        </div>
+
+        <!-- SIMPLE CONTACT FORM -->
+        <div class="contact-form">
+
+          <div class="form-row">
+
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="John" />
+            </div>
+
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Smith" />
+            </div>
+
+          </div>
+
+          <div class="field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@business.com" />
+          </div>
+
+          <div class="field">
+            <label for="company">Business Name</label>
+            <input type="text" id="company" placeholder="Your Business LLC" />
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+
+            <textarea id="message" placeholder="Tell us about your business and what you're looking for..."></textarea>
+          </div>
+
+          <div class="form-note">
+            This demo form is currently non-functional.
+            Contact us directly by phone or email.
+          </div>
+
+          <button type="button" class="btn btn-primary" style="align-self:flex-start;padding:16px 36px">
+            Send Message
+          </button>
+
+        </div>
+
+        <!-- HOURS -->
+        <div class="office-hours">
+
+          <h4>Business Hours</h4>
+
+          <div class="hours-row">
+            <strong>Monday – Friday</strong>
+            <span>8:00 AM – 6:00 PM EST</span>
+          </div>
+
+          <div class="hours-row">
+            <strong>Saturday</strong>
+            <span>9:00 AM – 2:00 PM EST</span>
+          </div>
+
+          <div class="hours-row">
+            <strong>Sunday</strong>
+            <span>Closed</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+
+      <div class="footer-inner">
+
+        <a class="logo" href="index.html">
+          <div class="logo-mark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+
+          <span class="logo-name">
+            Money<span>Point</span>
+          </span>
+        </a>
+
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="status-pill">
+          <span></span>
+          All systems operational
+        </div>
+
+        <div class="footer-copy">
+          © 2025 MoneyPoint Solutions. All rights reserved.
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MOBILE MENU SCRIPT -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
