@@ -1,46 +1,249 @@
 <!DOCTYPE html>
 <!-- contact.html -->
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us — MoneyPoint Solutions</title>
+  <title>Contact — MoneyPoint Solutions</title>
   <link rel="stylesheet" href="style.css" />
-</head>
+  <style>
+    /* ── CONTACT PAGE LAYOUT ─────────────────────────────── */
 
+    /* Override the two-column aside layout — use a centered wrap instead */
+    .contact-page {
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Page hero */
+    .contact-hero {
+      background: var(--off);
+      padding: 72px 0 64px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--gray-1);
+    }
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      right: -80px; bottom: -80px;
+      width: 380px; height: 380px;
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      opacity: .1;
+    }
+    .contact-hero-inner { position: relative; z-index: 1; }
+    .contact-hero h1 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -.03em;
+      line-height: 1.08;
+      margin-bottom: 14px;
+    }
+    .contact-hero h1 em { font-style: normal; color: var(--green); }
+    .contact-hero p {
+      font-size: .97rem;
+      color: var(--gray-3);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* Contact body: two panels side by side, both properly padded */
+    .contact-body {
+      flex: 1;
+      padding: 72px 0 80px;
+    }
+    .contact-body-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Left: channels */
+    .contact-channels-col h2 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+    .channel-stack { display: flex; flex-direction: column; gap: 14px; }
+    .ch-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      border-radius: var(--r-lg);
+      border: 1.5px solid var(--gray-1);
+      background: var(--off);
+      transition: border-color var(--trans), box-shadow var(--trans), transform var(--trans);
+    }
+    .ch-card:hover {
+      border-color: var(--green);
+      box-shadow: 0 4px 20px rgba(24,185,80,.1);
+      transform: translateY(-2px);
+    }
+    .ch-card-ico {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      border-radius: var(--r);
+      background: var(--green-xl);
+      display: grid;
+      place-items: center;
+    }
+    .ch-card-ico svg { color: var(--green); }
+    .ch-card-label {
+      font-family: var(--font-head);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray-2);
+      margin-bottom: 4px;
+    }
+    .ch-card-value {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--black);
+      line-height: 1.5;
+    }
+    .ch-card-value a { color: var(--black); transition: color var(--trans); }
+    .ch-card-value a:hover { color: var(--green); }
+    .ch-card-sub { font-size: .76rem; color: var(--gray-2); margin-top: 2px; }
+
+    /* Right: hours + info */
+    .contact-info-col h2 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+
+    /* Business hours */
+    .hours-card {
+      background: var(--off);
+      border-radius: var(--r-lg);
+      border: 1.5px solid var(--gray-1);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+    .hours-card-head {
+      background: var(--black);
+      color: var(--white);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hours-card-head svg { color: var(--green); }
+    .hours-card-head span {
+      font-family: var(--font-head);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .hours-list { padding: 8px 0; }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 22px;
+      border-bottom: 1px solid var(--gray-1);
+      font-size: .88rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: .84rem;
+      color: var(--black);
+    }
+    .hours-time { color: var(--gray-3); font-size: .83rem; }
+    .hours-closed { color: var(--gray-2); font-style: italic; }
+
+    /* Response time note */
+    .response-note {
+      background: var(--green-xl);
+      border: 1.5px solid var(--green);
+      border-radius: var(--r-lg);
+      padding: 20px 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .response-note-ico {
+      width: 36px; height: 36px; min-width: 36px;
+      border-radius: var(--r);
+      background: var(--green);
+      display: grid;
+      place-items: center;
+    }
+    .response-note-ico svg { color: var(--white); }
+    .response-note h4 {
+      font-family: var(--font-head);
+      font-size: .84rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .response-note p { font-size: .8rem; color: var(--gray-3); line-height: 1.55; }
+
+    /* Free report promo box */
+    .report-promo {
+      background: var(--black);
+      color: var(--white);
+      border-radius: var(--r-lg);
+      padding: 28px 24px;
+    }
+    .report-promo h4 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .report-promo h4 em { font-style: normal; color: var(--green); }
+    .report-promo p { font-size: .83rem; color: rgba(255,255,255,.5); line-height: 1.6; margin-bottom: 18px; }
+    .report-promo a { font-size: .84rem; padding: 11px 22px; }
+
+    @media (max-width: 900px) {
+      .contact-body-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+  </style>
+</head>
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- ═══════════════════ NAV ═══════════════════ -->
   <nav>
     <div class="nav-inner">
-
       <a class="logo" href="index.html">
         <div class="logo-mark">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <path d="M12 6v6l4 2" />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <polyline points="15 7 20 12 15 17"/>
           </svg>
         </div>
-        <span class="logo-name">Money<span>Point</span></span>
+        <span class="logo-name">Money<span>Point</span> Solutions</span>
       </a>
-
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="active">Contact</a>
       </div>
-
       <a href="contact.html" class="nav-cta">Get Started</a>
-
       <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
-
     </div>
   </nav>
-
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -48,248 +251,149 @@
     <a href="contact.html" class="mob-cta">Get Started →</a>
   </div>
 
-  <div class="page" id="page-contact">
+  <!-- ═══════════════════ CONTACT PAGE ═══════════════════ -->
+  <div class="contact-page">
 
-    <div class="contact-layout" style="padding-top:var(--nav-h)">
-
-      <!-- SIDEBAR -->
-      <div class="contact-sidebar">
-
-        <div>
-
-          <div class="logo">
-            <div class="logo-mark">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 6v6l4 2" />
-              </svg>
-            </div>
-
-            <span class="logo-name">
-              Money<span style="color:var(--green)">Point</span>
-            </span>
-          </div>
-
-          <div class="sidebar-head">
-            <h2>
-              Let's talk about your <em>payments.</em>
-            </h2>
-
-            <p>
-              Contact MoneyPoint Solutions to learn more about POS systems,
-              payment processing, and modern business payment solutions.
-            </p>
-          </div>
-
+    <!-- Hero -->
+    <div class="contact-hero">
+      <div class="wrap">
+        <div class="contact-hero-inner">
+          <div class="section-label anim"><div class="acline"></div>Reach Out</div>
+          <h1 class="anim d1">Let's talk about your <em>payments.</em></h1>
+          <p class="anim d2">Our team is ready to walk you through everything MoneyPoint Solutions offers and design a plan that fits your business — and your budget.</p>
         </div>
-
-        <!-- CONTACT CHANNELS -->
-        <div class="contact-channels">
-
-          <div class="channel">
-            <div class="ch-icon">
-              ✉
-            </div>
-
-            <div>
-              <div class="ch-label">General Inquiries</div>
-
-              <div class="ch-value">
-                <a href="mailto:moneypointsupport@gmail.com">
-                  moneypointsupport@gmail.com
-                </a>
-              </div>
-
-              <div class="ch-sub">
-                We typically respond within 1 business day
-              </div>
-            </div>
-          </div>
-
-          <div class="channel">
-            <div class="ch-icon">
-              ☎
-            </div>
-
-            <div>
-              <div class="ch-label">Business Line</div>
-
-              <div class="ch-value">
-                <a href="tel:+171">
-                  (71)
-                </a>
-              </div>
-
-              <div class="ch-sub">
-                Monday – Friday
-              </div>
-            </div>
-          </div>
-
-          <div class="channel">
-            <div class="ch-icon">
-              ☎
-            </div>
-
-            <div>
-              <div class="ch-label">Mobile</div>
-
-              <div class="ch-value">
-                <a href="tel:+120">
-                  (20)
-                </a>
-              </div>
-
-              <div class="ch-sub">
-                Available during business hours
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="sidebar-footer">
-          © 2025 MoneyPoint Solutions · New York, NY
-        </div>
-
       </div>
-
-      <!-- FORM PANEL -->
-      <div class="contact-form-panel">
-
-        <div class="form-header">
-
-          <div class="section-label">
-            <div class="acline"></div>
-            Contact Us
-          </div>
-
-          <h2>How can we help?</h2>
-
-          <p>
-            Reach out to discuss payment processing, POS systems,
-            pricing options, or business solutions.
-          </p>
-
-        </div>
-
-        <!-- SIMPLE CONTACT FORM -->
-        <div class="contact-form">
-
-          <div class="form-row">
-
-            <div class="field">
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" placeholder="John" />
-            </div>
-
-            <div class="field">
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" placeholder="Smith" />
-            </div>
-
-          </div>
-
-          <div class="field">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="john@business.com" />
-          </div>
-
-          <div class="field">
-            <label for="company">Business Name</label>
-            <input type="text" id="company" placeholder="Your Business LLC" />
-          </div>
-
-          <div class="field">
-            <label for="message">Message</label>
-
-            <textarea id="message" placeholder="Tell us about your business and what you're looking for..."></textarea>
-          </div>
-
-          <div class="form-note">
-            This demo form is currently non-functional.
-            Contact us directly by phone or email.
-          </div>
-
-          <button type="button" class="btn btn-primary" style="align-self:flex-start;padding:16px 36px">
-            Send Message
-          </button>
-
-        </div>
-
-        <!-- HOURS -->
-        <div class="office-hours">
-
-          <h4>Business Hours</h4>
-
-          <div class="hours-row">
-            <strong>Monday – Friday</strong>
-            <span>8:00 AM – 6:00 PM EST</span>
-          </div>
-
-          <div class="hours-row">
-            <strong>Saturday</strong>
-            <span>9:00 AM – 2:00 PM EST</span>
-          </div>
-
-          <div class="hours-row">
-            <strong>Sunday</strong>
-            <span>Closed</span>
-          </div>
-
-        </div>
-
-      </div>
-
     </div>
 
-  </div>
+    <!-- Contact Body -->
+    <div class="contact-body">
+      <div class="wrap">
+        <div class="contact-body-inner">
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrap">
+          <!-- LEFT: Contact Channels -->
+          <div class="contact-channels-col">
+            <h2>How to reach us</h2>
+            <div class="channel-stack">
 
-      <div class="footer-inner">
+              <div class="ch-card">
+                <div class="ch-card-ico">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div>
+                  <div class="ch-card-label">General Inquiries</div>
+                  <div class="ch-card-value"><a href="mailto:moneypointsupport@gmail.com">moneypointsupport@gmail.com</a></div>
+                  <div class="ch-card-sub">We reply within 2 business hours</div>
+                </div>
+              </div>
 
-        <a class="logo" href="index.html">
-          <div class="logo-mark">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
+              <div class="ch-card">
+                <div class="ch-card-ico">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <div class="ch-card-label">Sales &amp; New Accounts</div>
+                  <div class="ch-card-value"><a href="tel:+17186832297">(718) 683-2297</a></div>
+                  <div class="ch-card-sub">Mon–Fri 8 AM–6 PM ET · Ask about your free fee report</div>
+                </div>
+              </div>
+
+              <div class="ch-card">
+                <div class="ch-card-ico">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <div class="ch-card-label">Merchant Support</div>
+                  <div class="ch-card-value"><a href="tel:+12067186514">(206) 718-6514</a></div>
+                  <div class="ch-card-sub">For existing merchants — quick help, real people</div>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <span class="logo-name">
-            Money<span>Point</span>
-          </span>
-        </a>
+          <!-- RIGHT: Hours + Info -->
+          <div class="contact-info-col">
+            <h2>Business hours &amp; response times</h2>
 
+            <!-- Hours Card -->
+            <div class="hours-card">
+              <div class="hours-card-head">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Business Hours (Eastern Time)</span>
+              </div>
+              <div class="hours-list">
+                <div class="hours-row">
+                  <span class="hours-day">Monday – Friday</span>
+                  <span class="hours-time">8:00 AM – 6:00 PM ET</span>
+                </div>
+                <div class="hours-row">
+                  <span class="hours-day">Saturday</span>
+                  <span class="hours-closed">Closed</span>
+                </div>
+                <div class="hours-row">
+                  <span class="hours-day">Sunday</span>
+                  <span class="hours-time">9:00 AM – 5:00 PM ET</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Response Time Note -->
+            <div class="response-note">
+              <div class="response-note-ico">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4>We respond fast</h4>
+                <p>Email inquiries are answered within 2 business hours during business hours. Phone calls are answered live — no endless hold menus.</p>
+              </div>
+            </div>
+
+            <!-- Free Report Promo -->
+            <div class="report-promo">
+              <h4>Get your <em>Free Fee Report</em></h4>
+              <p>Send us your current processing statement and we'll analyze it for free — showing you exactly what you're paying and how much you could save by switching to MoneyPoint Solutions.</p>
+              <a href="mailto:moneypointsupport@gmail.com?subject=Free Fee Report Request" class="btn btn-green">
+                Email Us Your Statement
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.contact-page -->
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <a class="logo" href="index.html">
+          <div class="logo-mark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <line x1="4" y1="12" x2="20" y2="12"/>
+              <polyline points="15 7 20 12 15 17"/>
+            </svg>
+          </div>
+          <span class="logo-name">Money<span>Point</span> Solutions</span>
+        </a>
         <div class="footer-links">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact</a>
         </div>
-
-        <div class="status-pill">
-          <span></span>
-          All systems operational
-        </div>
-
-        <div class="footer-copy">
-          © 2025 MoneyPoint Solutions. All rights reserved.
-        </div>
-
+        <div class="status-pill"><span></span>All systems operational</div>
+        <div class="footer-copy">© 2026 MoneyPoint Solutions. All rights reserved.</div>
       </div>
-
     </div>
   </footer>
 
-  <!-- MOBILE MENU SCRIPT -->
   <script>
     function toggleMenu() {
       document.getElementById('mobileMenu').classList.toggle('open');
     }
   </script>
-
 </body>
 </html>
