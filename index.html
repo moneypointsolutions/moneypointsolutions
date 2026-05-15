@@ -1,84 +1,183 @@
 <!DOCTYPE html>
-<!-- about.html -->
+<!-- index.html -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — MoneyPoint Solutions</title>
+  <title>MoneyPoint Solutions — Modern Payment Systems</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* ── ABOUT-SPECIFIC STYLES ──────────────────────────── */
-
-    /* Quick-stat boxes along bottom of Who We Are */
-    .story-stat-boxes {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 60px;
+    /* ── INTEGRATIONS STRIP ─────────────────────────────── */
+    .integrations {
+      padding: 64px 0;
+      background: var(--white);
+      border-top: 1px solid var(--gray-1);
+      border-bottom: 1px solid var(--gray-1);
     }
-    .ssb {
-      background: var(--off);
-      border-radius: var(--r-lg);
-      padding: 24px 20px;
-      border-top: 3px solid var(--green);
+    .integrations-label {
       text-align: center;
-      transition: box-shadow var(--trans), transform var(--trans);
-    }
-    .ssb:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .ssb-num {
       font-family: var(--font-head);
-      font-size: 1.7rem;
-      font-weight: 800;
-      letter-spacing: -.04em;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 6px;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gray-2);
+      margin-bottom: 32px;
     }
-    .ssb-label {
+    .integrations-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .int-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 40px;
+      border: 1.5px solid var(--gray-1);
+      background: var(--off);
+      font-family: var(--font-head);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--black);
+      transition: border-color var(--trans), box-shadow var(--trans), transform var(--trans);
+    }
+    .int-badge:hover {
+      border-color: var(--green);
+      box-shadow: 0 4px 16px rgba(24,185,80,.12);
+      transform: translateY(-2px);
+    }
+    .int-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+    /* ── FREE REPORT ────────────────────────────────────── */
+    .free-report {
+      padding: 80px 0;
+      background: var(--green-xl);
+      border-top: 2px solid var(--green);
+      border-bottom: 2px solid var(--green);
+    }
+    .report-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .report-text h2 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      letter-spacing: -.03em;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .report-text p { font-size: .93rem; color: var(--gray-3); max-width: 500px; line-height: 1.68; }
+    .report-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .report-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      background: var(--white);
+      border-radius: 20px;
       font-family: var(--font-head);
       font-size: .72rem;
       font-weight: 700;
-      color: var(--gray-3);
-      text-transform: uppercase;
+      color: var(--black);
+      border: 1.5px solid rgba(24,185,80,.3);
+    }
+    .report-badge svg { color: var(--green); flex-shrink: 0; }
+    .report-cta { flex-shrink: 0; }
+
+    /* ── POS SYSTEMS ────────────────────────────────────── */
+    .pos-section {
+      padding: 110px 0;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .pos-section::before {
+      content: '';
+      position: absolute;
+      left: -100px; top: -100px;
+      width: 500px; height: 500px;
+      border: 60px solid rgba(24,185,80,.05);
+      border-radius: 50%;
+    }
+    .pos-section .section-head h2 { color: var(--white); }
+    .pos-section .section-head p  { color: rgba(255,255,255,.45); }
+    .pos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 56px;
+    }
+    .pos-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--r-lg);
+      padding: 32px 26px;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--trans), border-color var(--trans), transform var(--trans);
+    }
+    .pos-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .pos-card:hover {
+      background: rgba(24,185,80,.07);
+      border-color: rgba(24,185,80,.22);
+      transform: translateY(-3px);
+    }
+    .pos-card:hover::before { transform: scaleX(1); }
+    .pos-card-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--r);
+      background: rgba(24,185,80,.14);
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+    }
+    .pos-card-icon svg { color: var(--green); }
+    .pos-card h3 {
+      font-family: var(--font-head);
+      font-size: .97rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .pos-card p { font-size: .83rem; color: rgba(255,255,255,.45); line-height: 1.65; }
+    .pos-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 11px;
+      border-radius: 20px;
+      background: rgba(24,185,80,.14);
+      font-family: var(--font-head);
+      font-size: .66rem;
+      font-weight: 700;
       letter-spacing: .06em;
+      color: var(--green);
+      text-transform: uppercase;
     }
-    @media (max-width: 768px) {
-      .story-stat-boxes { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 480px) {
-      .story-stat-boxes { grid-template-columns: 1fr; }
-    }
-
-    /* Who We Are section full-width */
-    .who-we-are { padding: 100px 0; background: var(--white); }
-    .who-inner  { max-width: 760px; }
-    .who-inner h2 {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: clamp(1.7rem, 2.5vw, 2.3rem);
-      letter-spacing: -.03em;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-    .who-inner p {
-      color: var(--gray-3);
-      font-size: .96rem;
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-    .who-inner p:last-of-type { margin-bottom: 0; }
-
-    /* CTA section on about page */
-    .about-cta { padding: 90px 0; background: var(--off); text-align: center; }
-    .about-cta h2 {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: clamp(1.7rem, 2.5vw, 2.3rem);
-      letter-spacing: -.03em;
-      margin-bottom: 16px;
-    }
-    .about-cta h2 em { font-style: normal; color: var(--green); }
-    .about-cta p { color: var(--gray-3); font-size: .95rem; margin-bottom: 36px; }
+    @media (max-width: 1024px) { .pos-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px)  { .pos-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px)  { .report-inner { flex-direction: column; } }
   </style>
 </head>
 <body>
@@ -97,8 +196,8 @@
         <span class="logo-name">Money<span>Point</span> Solutions</span>
       </a>
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html" class="active">About</a>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
       <a href="contact.html" class="nav-cta">Get Started</a>
@@ -108,136 +207,296 @@
     </div>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="contact.html" class="mob-cta">Get Started →</a>
   </div>
 
-  <!-- ═══════════════════ PAGE HERO ═══════════════════ -->
-  <div class="page-hero pt-nav" style="padding-top: calc(var(--nav-h) + 72px);">
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero">
+    <div class="hero-geo"></div>
     <div class="wrap">
-      <div class="page-hero-content">
-        <div class="section-label anim"><div class="acline"></div>Our Story</div>
-        <h1 class="anim d1">Payments infrastructure<br>that works as <em>hard as you do.</em></h1>
-        <p class="anim d2">Founded with a mission to make enterprise-quality payment technology accessible to every business — regardless of size. Female-owned, merchant-focused, and built on the belief that you deserve better.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ═══════════════════ WHO WE ARE ═══════════════════ -->
-  <section class="who-we-are">
-    <div class="wrap">
-      <div class="who-inner">
-        <div class="section-label"><div class="acline"></div>Who We Are</div>
-        <h2>A female-owned business powering commerce for the builders of tomorrow</h2>
-        <p>MoneyPoint Solutions was founded by a woman who understood firsthand the challenges that small and mid-sized businesses face when navigating payment processing. The hidden fees. The confusing statements. The impersonal service. We set out to change all of that.</p>
-        <p>We believe that every business — from the neighborhood coffee shop to the growing multi-location retail brand — deserves the same quality of payment tools and the same level of honest, transparent service. No compromise on reliability, no sky-high fees, and no confusing contracts.</p>
-        <p>Today, MoneyPoint Solutions serves merchants across retail, hospitality, healthcare, and professional services. Our dedicated team of payment specialists is committed to one mission: making your checkout seamless and your business more profitable.</p>
-      </div>
-
-      <!-- Stat boxes along the bottom -->
-      <div class="story-stat-boxes">
-        <div class="ssb">
-          <div class="ssb-num">100%</div>
-          <div class="ssb-label">Female Owned</div>
-        </div>
-        <div class="ssb">
-          <div class="ssb-num">99.9%</div>
-          <div class="ssb-label">Uptime SLA</div>
-        </div>
-        <div class="ssb">
-          <div class="ssb-num">$0</div>
-          <div class="ssb-label">Hidden Fees</div>
-        </div>
-        <div class="ssb">
-          <div class="ssb-num">24/7</div>
-          <div class="ssb-label">Human Support</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ VALUES ═══════════════════ -->
-  <section class="values">
-    <div class="wrap">
-      <div class="values-head">
-        <div class="section-label" style="justify-content:center"><div class="acline"></div>Our Values</div>
-        <h2>The principles behind every product decision</h2>
-      </div>
-      <div class="values-grid">
-        <div class="val-card">
-          <div class="val-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-eyebrow anim"><div class="acline"></div>Trusted Payment Infrastructure</div>
+          <h1 class="anim d1">Modern Payments<br>Built for <em>Growth.</em></h1>
+          <p class="hero-desc anim d2">MoneyPoint Solutions delivers enterprise-grade POS systems, seamless payment processing, and real-time financial tools — all in one platform made for businesses that mean business.</p>
+          <div class="hero-actions anim d3">
+            <a href="contact.html" class="btn btn-primary">
+              Start Saving Now
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="about.html" class="btn btn-outline">Learn More</a>
           </div>
-          <h3>Security First</h3>
-          <p>Every line of code, every hardware choice, and every policy is designed to protect your business and your customers.</p>
-        </div>
-        <div class="val-card">
-          <div class="val-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="hero-stats anim d4">
+            <div class="stat">
+              <div class="stat-num" style="font-size:1.5rem">No</div>
+              <div class="stat-label">Hidden Fees</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num" style="font-size:1.5rem">Fair</div>
+              <div class="stat-label">Transparent Pricing</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">99<span>.9%</span></div>
+              <div class="stat-label">Uptime SLA</div>
+            </div>
           </div>
-          <h3>Radical Reliability</h3>
-          <p>Downtime costs you money. Our redundant infrastructure and 99.9% SLA ensure you're always open for business.</p>
         </div>
-        <div class="val-card">
-          <div class="val-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div class="hero-visual anim d3">
+          <div class="card-scene">
+            <div class="pay-card back"></div>
+            <div class="pay-card front">
+              <div class="card-chip"></div>
+              <div class="card-num">•••• •••• •••• 7293</div>
+              <div class="card-footer">
+                <div>
+                  <div class="card-name-label">Card Holder</div>
+                  <div class="card-name-val">MP Business</div>
+                </div>
+                <div class="card-brand">MP</div>
+              </div>
+            </div>
+            <div class="pos-pill">
+              <div class="pos-dot"></div>
+              <div>
+                <div class="pos-text">Payment Live</div>
+                <div class="pos-sub">POS Terminal Active</div>
+              </div>
+            </div>
           </div>
-          <h3>Transparent Pricing</h3>
-          <p>No hidden fees. No nasty surprises. One clear, consistent rate with everything included — hardware to support.</p>
-        </div>
-        <div class="val-card">
-          <div class="val-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>People-Centered</h3>
-          <p>Technology exists to serve people. Our products are built with empathy for the merchants and customers who use them daily.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ TEAM ═══════════════════ -->
-  <section class="team" style="padding: 90px 0;">
+  <!-- ═══════════════════ INTEGRATIONS ═══════════════════ -->
+  <section class="integrations">
     <div class="wrap">
-      <div class="section-label"><div class="acline"></div>Leadership</div>
-      <h2 style="font-family:var(--font-head);font-weight:800;font-size:clamp(1.7rem,2.5vw,2.3rem);letter-spacing:-.03em;margin-bottom:48px;">Meet the team behind MoneyPoint Solutions</h2>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="avatar">JL</div>
-          <div class="team-name">Jamie Lawson</div>
-          <div class="team-role">CEO &amp; Founder</div>
+      <div class="integrations-label">Works seamlessly with your favorite business tools</div>
+      <div class="integrations-row">
+        <div class="int-badge"><div class="int-dot"></div>QuickBooks</div>
+        <div class="int-badge"><div class="int-dot"></div>Xero</div>
+        <div class="int-badge"><div class="int-dot"></div>FreshBooks</div>
+        <div class="int-badge"><div class="int-dot"></div>Square Payroll</div>
+        <div class="int-badge"><div class="int-dot"></div>Shopify</div>
+        <div class="int-badge"><div class="int-dot"></div>WooCommerce</div>
+        <div class="int-badge"><div class="int-dot"></div>Wave Accounting</div>
+        <div class="int-badge"><div class="int-dot"></div>Toast POS</div>
+        <div class="int-badge"><div class="int-dot"></div>Clover</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FREE REPORT ═══════════════════ -->
+  <section class="free-report">
+    <div class="wrap">
+      <div class="report-inner">
+        <div class="report-text">
+          <div class="section-label" style="margin-bottom:10px"><div class="acline"></div>Free — No Obligation</div>
+          <h2>Get Your Free Fee Report &amp; Custom Quote</h2>
+          <p>Not sure if you're being overcharged by your current processor? We'll analyze your statements and show you exactly what you're paying — and what you could be saving with MoneyPoint Solutions.</p>
+          <div class="report-badges">
+            <div class="report-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Free Statement Analysis</div>
+            <div class="report-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Custom Savings Quote</div>
+            <div class="report-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>No Obligation</div>
+            <div class="report-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Results in 24 Hours</div>
+          </div>
         </div>
-        <div class="team-card">
-          <div class="avatar" style="background:#e7f9ed">PR</div>
-          <div class="team-name">Priya Rajan</div>
-          <div class="team-role">Chief Technology Officer</div>
-        </div>
-        <div class="team-card">
-          <div class="avatar">MC</div>
-          <div class="team-name">Maria Chen</div>
-          <div class="team-role">Chief Product Officer</div>
-        </div>
-        <div class="team-card">
-          <div class="avatar" style="background:#f0f0f0">SO</div>
-          <div class="team-name">Sofia Okafor</div>
-          <div class="team-role">Head of Merchant Success</div>
+        <div class="report-cta">
+          <a href="contact.html" class="btn btn-green" style="font-size:.95rem;padding:17px 34px">
+            Get My Free Report
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ ABOUT CTA ═══════════════════ -->
-  <section class="about-cta">
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section class="services">
     <div class="wrap">
-      <div class="section-label" style="justify-content:center;margin-bottom:16px"><div class="acline"></div>Ready to Get Started?</div>
-      <h2>Ready to <em>join</em> the MoneyPoint Solutions family?</h2>
-      <p>Let's talk about how we can power your payment operations with honest pricing and real support.</p>
-      <a href="contact.html" class="btn btn-green" style="font-size:1rem;padding:18px 44px;">
-        Get in Touch
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
+      <div class="section-head">
+        <div class="section-label"><div class="acline"></div>Our Services</div>
+        <h2>Everything you need to accept payments confidently</h2>
+        <p>From your first swipe to enterprise-scale processing, MoneyPoint Solutions has the tools, technology, and support to keep your checkout seamless.</p>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+          <h3>POS Terminal Systems</h3>
+          <p>State-of-the-art hardware with intuitive software. Accept chip, swipe, tap, and mobile payments at any counter or kiosk.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Secure Payment Gateway</h3>
+          <p>PCI-DSS Level 1 certified gateway with end-to-end encryption, fraud detection, and fast authorization speeds.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <h3>Next-Day Settlements</h3>
+          <p>Funds deposited as fast as the next business day, with real-time visibility into every transaction and available balance.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3>Merchant Dashboard</h3>
+          <p>A unified control center for sales analytics, inventory tracking, staff management, and downloadable financial reports.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Mobile &amp; Contactless</h3>
+          <p>Turn any smartphone into a payment terminal. Accept NFC, QR, and mobile wallet payments with our lightweight reader.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3>Analytics &amp; Reporting</h3>
+          <p>Deep insights into your business performance. Identify peak hours, top products, and trends with real-time analytics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ POS SYSTEMS ═══════════════════ -->
+  <section class="pos-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-label"><div class="acline"></div>POS Systems</div>
+        <h2>The right terminal for every type of business</h2>
+        <p>Whether you're behind a counter, on a trade-show floor, or running a full restaurant, MoneyPoint Solutions has a POS built for you.</p>
+      </div>
+      <div class="pos-grid">
+        <div class="pos-card">
+          <div class="pos-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <h3>Countertop Terminal</h3>
+          <p>A sturdy, full-featured terminal designed for high-volume retail and restaurant environments. Large display, built-in receipt printer, and all payment types accepted.</p>
+          <span class="pos-tag">Best for Retail &amp; Food Service</span>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+          <h3>Mobile Card Reader</h3>
+          <p>Plug-in or Bluetooth reader pairs with our app on any iOS or Android device. Perfect for pop-ups, markets, food trucks, and on-the-go sales.</p>
+          <span class="pos-tag">Best for Mobile Businesses</span>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3>Tablet POS System</h3>
+          <p>A sleek tablet-based POS with customer-facing display, inventory management, and table/order management for full-service restaurants and boutiques.</p>
+          <span class="pos-tag">Best for Restaurants &amp; Boutiques</span>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <h3>Virtual Terminal</h3>
+          <p>Accept payments by phone or enter card details manually through a secure web interface — ideal for service businesses and invoicing.</p>
+          <span class="pos-tag">Best for Service Businesses</span>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+          <h3>E-Commerce Gateway</h3>
+          <p>Integrate directly into your online store with our developer-friendly API. Supports Shopify, WooCommerce, Magento, and more.</p>
+          <span class="pos-tag">Best for Online Stores</span>
+        </div>
+        <div class="pos-card">
+          <div class="pos-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <h3>Self-Service Kiosk</h3>
+          <p>Fully automated payment kiosks for high-traffic environments like quick-service restaurants, parking, and ticketing — reducing wait times and labor costs.</p>
+          <span class="pos-tag">Best for High-Volume Venues</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ BENEFITS ═══════════════════ -->
+  <section class="benefits">
+    <div class="wrap">
+      <div class="benefits-inner">
+        <div class="benefits-col">
+          <div class="section-label"><div class="acline"></div>Why MoneyPoint Solutions</div>
+          <h2>Built around the way you do business</h2>
+          <p>Whether you're a single-location café or a multi-branch retail chain, MoneyPoint Solutions scales with you. Consistent pricing, reliable support, and zero surprises.</p>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="benefit-text">
+                <h4>Zero Setup Complexity</h4>
+                <p>Our team handles installation, configuration, and staff training so you're transacting on day one — no tech skills required.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="benefit-text">
+                <h4>Consistent, Transparent Pricing</h4>
+                <p>No hidden fees, no surprise rate hikes. One clear rate covers everything — hardware, software, and support.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="benefit-text">
+                <h4>Bank-Grade Security</h4>
+                <p>256-bit TLS encryption, tokenization, and 24/7 fraud monitoring protect every transaction automatically.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="benefit-text">
+                <h4>Reliable Human Support</h4>
+                <p>Reach a real payment expert any time via phone or email. We're here when you need us most.</p>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:8px">Talk to Sales</a>
+        </div>
+        <div class="benefits-visual">
+          <div class="dash-card dash-main">
+            <div class="dash-lbl">Monthly Revenue</div>
+            <div class="dash-amount">$84,320</div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-meta"><span>74% of target</span><span>Goal: $114K</span></div>
+          </div>
+          <div class="dash-card dash-txn">
+            <div class="dash-lbl" style="margin-bottom:14px">Recent Transactions</div>
+            <div class="txn-row">
+              <div class="txn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+              <div><div class="txn-name">Card Sale</div><div class="txn-time">2 min ago</div></div>
+              <div class="txn-amt">+$142</div>
+            </div>
+            <div class="txn-row">
+              <div class="txn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+              <div><div class="txn-name">NFC Tap</div><div class="txn-time">8 min ago</div></div>
+              <div class="txn-amt">+$56</div>
+            </div>
+            <div class="txn-row">
+              <div class="txn-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+              <div><div class="txn-name">Card Sale</div><div class="txn-time">15 min ago</div></div>
+              <div class="txn-amt">+$398</div>
+            </div>
+          </div>
+          <div class="dash-card dash-status">
+            <div class="dash-lbl" style="margin-bottom:12px">Channels</div>
+            <div class="status-row"><span><span class="s-dot green"></span>In-Store</span><span class="s-val">64%</span></div>
+            <div class="status-row"><span><span class="s-dot gray"></span>Online</span><span class="s-val">24%</span></div>
+            <div class="status-row"><span><span class="s-dot dark"></span>Mobile</span><span class="s-val">12%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA BAND ═══════════════════ -->
+  <section class="cta-band">
+    <div class="wrap">
+      <div class="cta-inner">
+        <div class="section-label"><div class="acline"></div>Get Started Today</div>
+        <h2>Ready to take your payments to the <em>next level?</em></h2>
+        <p>Join businesses that trust MoneyPoint Solutions for reliable support, consistent pricing, and payments that just work.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-white">Request a Demo</a>
+          <a href="tel:+17186832297" class="btn btn-ghost">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Us Now
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
